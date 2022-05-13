@@ -1,0 +1,5 @@
+create table test1 (
+	data1 varchar(100) not null,
+	data2 varchar(100) not null,
+	data3 varchar(100) not null
+)
