@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper1">
+	<insert id="insert_data" parameterType="com.example.beans.DataBean">
+		<![CDATA[
+			insert into test1 (data1, data2, data3)
+			values (#{data1}, #{data2}, #{data3})
+		]]>
+	</insert>
+	<select id="select_data" resultType="com.example.beans.DataBean">
+		<![CDATA[
+			select data1, data2, data3 from test1
+		]]>
+	</select>
+</mapper>
