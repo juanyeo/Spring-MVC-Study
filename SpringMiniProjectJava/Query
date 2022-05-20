@@ -1,0 +1,37 @@
+create table board_info_table(
+	board_info_idx int(1) primary key,
+	board_info_name varchar(500) not null
+);
+
+insert into board_info_table(board_info_idx, board_info_name) values (1, '자유게시판');
+insert into board_info_table(board_info_idx, board_info_name) values (2, '유머게시판');
+insert into board_info_table(board_info_idx, board_info_name) values (3, '정치게시판');
+insert into board_info_table(board_info_idx, board_info_name) values (4, '스포츠게시판');
+
+commit;
+
+create table user_table(
+	user_idx int(1) primary key auto_increment,
+	user_name varchar(50) not null,
+	user_id varchar(100) not null,
+	user_pw varchar(100) not null
+);
+
+create table content_table(
+	content_idx int(1) primary key auto_increment,
+	content_subject varchar(500) not null,
+	content_text text not null,
+	content_file varchar(500),
+	content_writer_idx int(1) not null,
+	content_board_idx int(1) not null,
+	content_date datetime not null,
+	foreign key (content_writer_idx) references user_table (user_idx),
+	foreign key (content_board_idx) references board_info_table (board_info_idx)
+);
+
+select board_info_idx, board_info_name from board_info_table
+order by board_info_idx;
+
+select user_name from user_table where user_id = #{user_id}; 
+
+insert into user_table(user_name, user_id, user_pw) values (#{user_name}, #{user_id}, #{user_pw})
